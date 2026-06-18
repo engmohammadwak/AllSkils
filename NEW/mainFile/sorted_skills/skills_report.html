@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html data-lang="ar" lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مستودع المهارات | Skills Repository</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #07111f;
+  --bg2:     #0c1726;
+  --glass:   rgba(255,255,255,.07);
+  --glass2:  rgba(255,255,255,.11);
+  --border:  rgba(255,255,255,.12);
+  --text:    #f8fbff;
+  --muted:   #b6c2d9;
+  --accent:  #2b7de9;
+  --accent2: #d4a017;
+  --shadow:  0 20px 60px rgba(0,0,0,.35);
+  --radius:  22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html[data-lang="ar"] body { font-family: Tajawal, Cairo, system-ui; direction: rtl; }
+html[data-lang="en"] body { font-family: Inter, system-ui; direction: ltr; }
+body{
+  background:
+    radial-gradient(circle at top right,   rgba(43,125,233,.22), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(212,160,23,.15),  transparent 28%),
+    linear-gradient(135deg, #050b14 0%, #0a1422 45%, #09111c 100%);
+  color:var(--text);min-height:100vh;padding:22px;overflow-x:hidden;position:relative;
+}
+body::before{
+  content:"";position:fixed;inset:0;
+  background:linear-gradient(120deg,rgba(255,255,255,.04),transparent 35%,rgba(255,255,255,.03));
+  pointer-events:none;backdrop-filter:blur(2px);z-index:0;
+}
+.container{max-width:1450px;margin:auto;position:relative;z-index:1}
+.glass{
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  background:var(--glass);border:1px solid var(--border);box-shadow:var(--shadow);
+}
+.header{border-radius:28px;padding:30px 28px;margin-bottom:22px;text-align:center;position:relative;overflow:hidden}
+.header::before{
+  content:"";position:absolute;inset:-2px;
+  background:linear-gradient(135deg,rgba(43,125,233,.24),rgba(212,160,23,.12),transparent 70%);
+  z-index:-1;
+}
+.header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:12px}
+.lang-toggle{
+  background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:999px;
+  padding:8px 22px;color:var(--text);cursor:pointer;font-size:15px;
+  transition:all .3s;display:flex;align-items:center;gap:8px;
+  font-family: inherit;
+}
+.lang-toggle:hover{background:rgba(255,255,255,.18);transform:scale(1.04)}
+h1{
+  font-family: Cairo, Inter, system-ui;
+  font-size:clamp(28px,4vw,46px);margin-bottom:8px;
+  background:linear-gradient(135deg,#60a5fa,#a78bfa);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block;
+}
+.subtitle{color:var(--muted);font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:22px}
+.stat-item{
+  border-radius:18px;padding:16px 18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));text-align:center;
+}
+.number{font-family:Cairo,Inter,system-ui;font-size:28px;font-weight:800;color:#fff;margin-bottom:4px}
+.label{color:var(--muted);font-size:13px}
+.search-box{border-radius:22px;padding:16px;margin-bottom:22px}
+.search-box input{
+  width:100%;padding:16px 18px;border-radius:16px;border:1px solid var(--border);
+  background:rgba(3,10,20,.45);color:var(--text);font-size:16px;outline:none;transition:all .3s;
+  font-family:inherit;
+}
+.search-box input::placeholder{color:#93a4c6}
+.search-box input:focus{border-color:rgba(43,125,233,.7);box-shadow:0 0 0 4px rgba(43,125,233,.12)}
+.category{border-radius:26px;margin-bottom:18px;overflow:hidden}
+.category-header{
+  padding:18px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(135deg,rgba(43,125,233,.35),rgba(118,75,162,.28));
+  border-bottom:1px solid rgba(255,255,255,.08);transition:all .3s;
+}
+.category-header:hover{background:linear-gradient(135deg,rgba(43,125,233,.45),rgba(118,75,162,.38))}
+.cat-title{
+  font-family:Cairo,Inter,system-ui;font-size:20px;font-weight:800;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:#f8fbff;
+}
+.badge{background:rgba(255,255,255,.14);padding:4px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#f8fbff}
+.category-body{padding:18px 18px 8px}
+/* ── Sub-category (level 2) ── */
+.sub-category{margin-bottom:16px}
+.sub-category-header{
+  padding:12px 16px;border-radius:16px;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,255,.05);cursor:pointer;transition:all .3s;
+}
+.sub-category-header:hover{background:rgba(255,255,255,.08)}
+.sub-title{font-family:Cairo,Inter,system-ui;font-size:17px;font-weight:700;display:flex;gap:8px;align-items:center;color:#f8fbff}
+/* ── Tech group (level 3) ── */
+.tech-group{margin:10px 0 4px 0}
+.tech-group-header{
+  padding:9px 14px;border-radius:12px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(43,125,233,.12);border:1px solid rgba(43,125,233,.22);
+  cursor:pointer;transition:all .25s;
+}
+.tech-group-header:hover{background:rgba(43,125,233,.2)}
+.tech-title{
+  font-family:Cairo,Inter,system-ui;font-size:14px;font-weight:700;
+  display:flex;align-items:center;gap:7px;color:#93c5fd;
+  text-transform:capitalize;letter-spacing:.03em;
+}
+.tech-title::before{
+  content:"";display:inline-block;width:7px;height:7px;
+  border-radius:50%;background:#2b7de9;flex-shrink:0;
+}
+/* ── Skills grid ── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;padding:10px 0 4px 0}
+.skill-card{
+  border-radius:18px;padding:14px 16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
+  transition:all .25s;cursor:pointer;border:1px solid transparent;
+}
+.skill-card:hover{
+  transform:translateY(-3px);border-color:rgba(43,125,233,.45);
+  background:rgba(255,255,255,.1);box-shadow:0 8px 25px rgba(43,125,233,.15);
+}
+.skill-name{font-family:Cairo,Inter,system-ui;font-weight:800;margin-bottom:5px;font-size:15px;color:#f8fbff}
+.skill-desc{color:#c9d3e8;font-size:13px;line-height:1.6}
+.skill-file{color:#8ea0bf;font-size:11px;margin-top:6px;font-family:monospace;opacity:.7}
+.toggle-icon{transition:transform .3s;font-size:14px;color:#f8fbff}
+.toggle-icon.open{transform:rotate(180deg)}
+.hidden{display:none!important}
+.no-results{text-align:center;padding:36px;color:var(--muted);font-size:18px}
+.footer{text-align:center;padding:24px 10px;color:var(--muted);font-size:13px;opacity:.7}
+html[data-lang="ar"] [data-en] { display: none !important; }
+html[data-lang="en"] [data-ar] { display: none !important; }
+@media(max-width:768px){
+  body{padding:12px}
+  .cat-title{font-size:16px}
+  .skills-grid{grid-template-columns:1fr}
+  .header{padding:20px 16px}
+  .stats{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat-item{padding:12px 10px}
+  .number{font-size:22px}
+  .header-top{flex-direction:column;align-items:center}
+}
+</style>
+<script>
+(function(){
+  var p=new URLSearchParams(location.search);
+  var l=p.get("lang")||"ar";
+  document.documentElement.setAttribute("data-lang",l);
+  document.documentElement.setAttribute("lang",l);
+  document.documentElement.setAttribute("dir",l==="ar"?"rtl":"ltr");
+  window.__currentLang=l;
+})();
+</script>
+</head>
+<body>
+<div class="container">
+<div class="header glass">
+  <div class="header-top">
+    <div></div>
+    <button id="langToggleBtn" class="lang-toggle" onclick="toggleLanguage()">🌐 English</button>
+  </div>
+  <h1><span data-ar>مستودع المهارات</span><span data-en>Skills Repository</span></h1>
+  <p class="subtitle"><span data-ar>تقرير احترافي ثنائي اللغة</span><span data-en>Professional Bilingual Report</span></p>
+  <div class="stats">
+    <div class="stat-item"><div class="number">0</div>
+      <div class="label"><span data-ar>إجمالي المهارات</span><span data-en>Total Skills</span></div></div>
+    <div class="stat-item"><div class="number">0</div>
+      <div class="label"><span data-ar>التخصصات الرئيسية</span><span data-en>Main Specializations</span></div></div>
+    <div class="stat-item"><div class="number">0</div>
+      <div class="label"><span data-ar>الملفات المعالجة</span><span data-en>Processed Files</span></div></div>
+    <div class="stat-item"><div class="number">2026-06-18</div>
+      <div class="label"><span data-ar>آخر تحديث</span><span data-en>Last Updated</span></div></div>
+  </div>
+</div>
+<div class="search-box glass">
+  <input id="searchInput" type="text"
+    data-placeholder-ar="ابحث عن مهارة..."
+    data-placeholder-en="Search for a skill..."
+    placeholder="ابحث عن مهارة..."
+    onkeyup="filterSkills()">
+</div>
+<div id="categoriesContainer">
+</div>
+<div id="noResults" class="no-results hidden">
+  <span data-ar>لا توجد نتائج تطابق بحثك</span>
+  <span data-en>No results match your search</span>
+</div>
+<div class="footer">
+  <span data-ar>تم الإنشاء تلقائياً بواسطة نظام تصنيف المهارات</span>
+  <span data-en>Automatically generated by the Skill Classification System</span>
+</div>
+</div>
+<script>(function() {
+  var params = new URLSearchParams(window.location.search);
+  var initLang = params.get('lang') || 'ar';
+  applyLanguage(initLang);
+
+  function applyLanguage(lang) {
+    var html = document.documentElement;
+    html.setAttribute('data-lang', lang);
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    var btn = document.getElementById('langToggleBtn');
+    if (btn) btn.textContent = lang === 'ar' ? '🌐 English' : '🌐 عربي';
+    var inp = document.getElementById('searchInput');
+    if (inp) inp.placeholder = inp.getAttribute('data-placeholder-' + lang);
+    window.__currentLang = lang;
+  }
+
+  window.toggleLanguage = function() {
+    var newLang = window.__currentLang === 'ar' ? 'en' : 'ar';
+    applyLanguage(newLang);
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname + '?lang=' + newLang);
+    }
+  };
+})();
+
+function filterSkills() {
+  var f = document.getElementById('searchInput').value.toLowerCase().trim();
+  var anyVisible = false;
+  document.querySelectorAll('.category').forEach(function(cat) {
+    var catVisible = false;
+    cat.querySelectorAll('.sub-category').forEach(function(sub) {
+      var subVisible = false;
+      sub.querySelectorAll('.skill-card').forEach(function(card) {
+        var ok = !f || card.textContent.toLowerCase().includes(f);
+        card.style.display = ok ? '' : 'none';
+        if (ok) subVisible = true;
+      });
+      sub.querySelectorAll('.tech-group').forEach(function(tg) {
+        var tgVisible = Array.from(tg.querySelectorAll('.skill-card'))
+          .some(function(c){ return c.style.display !== 'none'; });
+        tg.style.display = (tgVisible || !f) ? '' : 'none';
+        if (tgVisible) subVisible = true;
+      });
+      sub.style.display = (subVisible || !f) ? '' : 'none';
+      if (subVisible) catVisible = true;
+    });
+    cat.style.display = (catVisible || !f) ? '' : 'none';
+    if (catVisible) anyVisible = true;
+  });
+  var nr = document.getElementById('noResults');
+  if (nr) nr.classList.toggle('hidden', anyVisible || !f);
+}
+
+function toggleCategory(header) {
+  var body = header.nextElementSibling;
+  var icon = header.querySelector('.toggle-icon');
+  body.classList.toggle('hidden');
+  icon.classList.toggle('open');
+}
+
+function toggleSubCategory(header) {
+  var body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+}
+
+function toggleTechGroup(header) {
+  var grid = header.nextElementSibling;
+  grid.classList.toggle('hidden');
+  var icon = header.querySelector('.toggle-icon');
+  if (icon) icon.classList.toggle('open');
+}
+</script>
+</body>
+</html>
